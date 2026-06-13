@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(20.0),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     'Shoes\nCollection',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
                 const Expanded(
@@ -101,7 +101,9 @@ class _HomePageState extends State<HomePage> {
                     title: product['title'] as String,
                     price: (product['price'] as num).toDouble(),
                     image: product['imageUrl'] as String,
-                    backgroundColor: index.isEven ? const Color.fromARGB(255, 241, 218, 255) : const Color.fromARGB(255, 252, 206, 211),
+                    backgroundColor: index.isEven
+                        ? const Color.fromARGB(255, 241, 218, 255)
+                        : const Color.fromARGB(255, 252, 206, 211),
                   );
                 },
               ),
