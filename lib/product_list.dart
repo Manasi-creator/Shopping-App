@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_app/app_colors.dart';
 import 'package:shopping_app/global_variables.dart';
 import 'package:shopping_app/product_card.dart';
 import 'package:shopping_app/product_details_page.dart';
@@ -23,7 +24,7 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     const border = OutlineInputBorder(
-      borderSide: BorderSide(color: Color.fromRGBO(255, 255, 255, 1)),
+      borderSide: BorderSide(color: AppColors.clay),
       borderRadius: BorderRadius.all(Radius.circular(40)),
     );
 
@@ -69,13 +70,14 @@ class _ProductListState extends State<ProductList> {
                     child: Chip(
                       backgroundColor: selectedFilter == filter
                           ? Theme.of(context).colorScheme.primary
-                          : const Color.fromARGB(255, 174, 255, 248),
-                      side: BorderSide(
-                        color: const Color.fromARGB(255, 88, 113, 255),
-                      ),
+                          : const Color(0xFFF4E9D6),
+                      side: const BorderSide(color: AppColors.clay),
                       label: Text(
                         filter,
-                        style: const TextStyle(
+                        style: TextStyle(
+                          color: selectedFilter == filter
+                              ? AppColors.cream
+                              : AppColors.text,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -113,8 +115,8 @@ class _ProductListState extends State<ProductList> {
                     price: (product['price'] as num).toDouble(),
                     image: product['imageUrl'] as String,
                     backgroundColor: index.isEven
-                        ? const Color.fromARGB(255, 241, 218, 255)
-                        : const Color.fromARGB(255, 252, 206, 211),
+                        ? const Color(0xFFF4E9D6)
+                        : const Color(0xFFD69A7D),
                   ),
                 );
               },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app/app_colors.dart';
 import 'package:shopping_app/cart_provider.dart';
 
 class CartPage extends StatelessWidget {
@@ -41,12 +42,12 @@ class CartPage extends StatelessWidget {
                               context,
                               listen: false,
                             ).removeProduct(cartItem);
-                            Navigator.of(context).pop();                           
+                            Navigator.of(context).pop();
                           },
                           child: const Text(
                             'Yes',
                             style: TextStyle(
-                              color: Colors.red,
+                              color: AppColors.oxblood,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -58,7 +59,7 @@ class CartPage extends StatelessWidget {
                           child: const Text(
                             'No',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: AppColors.forest,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -68,7 +69,7 @@ class CartPage extends StatelessWidget {
                   },
                 );
               },
-              icon: const Icon(Icons.delete, color: Colors.redAccent),
+              icon: const Icon(Icons.delete, color: AppColors.oxblood),
             ),
             title: Text(
               cartItem['title'].toString(),

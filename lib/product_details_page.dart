@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopping_app/app_colors.dart';
 import 'package:shopping_app/cart_provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String, Object> product;
+
   const ProductDetailsPage({super.key, required this.product});
 
   @override
@@ -23,9 +25,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         'size': selectedSize,
         'imageUrl': widget.product['imageUrl'],
       });
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Plroduct added successfully!')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Product added successfully!')),
+      );
     } else {
       ScaffoldMessenger.of(
         context,
@@ -39,9 +41,13 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       appBar: AppBar(title: const Text('Details')),
       body: Column(
         children: [
-          Text(
-            widget.product['title'] as String,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 24, 20, 0),
+            child: Text(
+              widget.product['title'] as String,
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
           ),
           const Spacer(flex: 1),
           Padding(
@@ -52,16 +58,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           Container(
             height: 250,
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 241, 218, 255),
-              borderRadius: BorderRadius.circular(30),
+            decoration: const BoxDecoration(
+              color: Color(0xFFF4E9D6),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '₹${widget.product['price']}',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                  'Rs. ${widget.product['price']}',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(color: AppColors.oxblood),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(
@@ -84,8 +92,15 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           child: Chip(
                             label: Text(size.toString()),
                             backgroundColor: selectedSize == size
-                                ? Theme.of(context).colorScheme.primary
-                                : null,
+                                ? AppColors.forest
+                                : AppColors.cream,
+                            labelStyle: TextStyle(
+                              color: selectedSize == size
+                                  ? AppColors.cream
+                                  : AppColors.text,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            side: const BorderSide(color: AppColors.clay),
                           ),
                         ),
                       );
@@ -96,15 +111,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   padding: const EdgeInsets.all(10.0),
                   child: ElevatedButton.icon(
                     onPressed: onTap,
-                    icon: const Icon(Icons.shopping_cart, color: Colors.black),
+                    icon: const Icon(Icons.shopping_cart),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 174, 255, 248),
+                      backgroundColor: AppColors.oxblood,
+                      foregroundColor: AppColors.cream,
                       minimumSize: const Size(double.infinity, 50),
                     ),
                     label: const Text(
                       'Add to Cart',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: AppColors.cream,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
