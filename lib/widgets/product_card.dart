@@ -37,13 +37,15 @@ class ProductCard extends StatelessWidget {
             ).textTheme.titleSmall?.copyWith(color: AppColors.oxblood),
           ),
           const SizedBox(height: 5),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: Image.asset(
-              image,
-              alignment: Alignment.center,
-              fit: BoxFit.contain,
-              width: double.infinity,
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.asset(
+                image,
+                alignment: Alignment.center,
+                fit: BoxFit.contain,
+                width: double.infinity,
+              ),
             ),
           ),
         ],
