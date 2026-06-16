@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app/app_colors.dart';
-import 'package:shopping_app/cart_provider.dart';
+import 'package:shopping_app/providers/cart_provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String, Object> product;
@@ -52,7 +52,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           const Spacer(flex: 1),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Image.asset(widget.product['imageUrl'] as String),
+            child: Image.asset(widget.product['imageUrl'] as String, height: 250,),
           ),
           const Spacer(flex: 2),
           Container(
@@ -89,18 +89,20 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               selectedSize = size;
                             });
                           },
-                          child: Chip(
-                            label: Text(size.toString()),
-                            backgroundColor: selectedSize == size
-                                ? AppColors.forest
-                                : AppColors.cream,
-                            labelStyle: TextStyle(
-                              color: selectedSize == size
-                                  ? AppColors.cream
-                                  : AppColors.text,
-                              fontWeight: FontWeight.bold,
+                          child: Center(
+                            child: Chip(
+                              label: Text(size.toString()),
+                              backgroundColor: selectedSize == size
+                                  ? AppColors.forest
+                                  : AppColors.cream,
+                              labelStyle: TextStyle(
+                                color: selectedSize == size
+                                    ? AppColors.cream
+                                    : AppColors.text,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              side: const BorderSide(color: AppColors.clay),
                             ),
-                            side: const BorderSide(color: AppColors.clay),
                           ),
                         ),
                       );
@@ -115,7 +117,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.oxblood,
                       foregroundColor: AppColors.cream,
-                      minimumSize: const Size(double.infinity, 50),
+                      fixedSize: const Size(300, 50),
                     ),
                     label: const Text(
                       'Add to Cart',
