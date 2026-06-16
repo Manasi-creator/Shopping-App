@@ -52,7 +52,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           const Spacer(flex: 1),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Image.asset(widget.product['imageUrl'] as String, height: 250,),
+            child: Image.asset(
+              widget.product['imageUrl'] as String,
+              height: 250,
+            ),
           ),
           const Spacer(flex: 2),
           Container(
@@ -72,42 +75,32 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   ).textTheme.titleLarge?.copyWith(color: AppColors.oxblood),
                 ),
                 const SizedBox(height: 10),
-                SizedBox(
-                  height: 60,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: (widget.product['sizes'] as List<int>).length,
-                    itemBuilder: (context, index) {
-                      final size =
-                          (widget.product['sizes'] as List<int>)[index];
-
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedSize = size;
-                            });
-                          },
-                          child: Center(
-                            child: Chip(
-                              label: Text(size.toString()),
-                              backgroundColor: selectedSize == size
-                                  ? AppColors.forest
-                                  : AppColors.cream,
-                              labelStyle: TextStyle(
-                                color: selectedSize == size
-                                    ? AppColors.cream
-                                    : AppColors.text,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              side: const BorderSide(color: AppColors.clay),
-                            ),
-                          ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: (widget.product['sizes'] as List<int>).map((size) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedSize = size;
+                        });
+                      },
+                      child: Chip(
+                        label: Text(size.toString()),
+                        backgroundColor: selectedSize == size
+                            ? AppColors.forest
+                            : AppColors.cream,
+                        labelStyle: TextStyle(
+                          color: selectedSize == size
+                              ? AppColors.cream
+                              : AppColors.text,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
-                  ),
+                        side: const BorderSide(color: AppColors.clay),
+                      ),
+                    );
+                  }).toList(),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),

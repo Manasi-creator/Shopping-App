@@ -97,59 +97,61 @@ class _ProductListState extends State<ProductList> {
             ),
           ),
           Expanded(
-            child: size.width > 650 ? GridView.builder(
-              itemCount: products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemBuilder: (context, index) {
-                final product = products[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ProductDetailsPage(product: product);
+            child: size.width > 650
+                ? GridView.builder(
+                    itemCount: products.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2,
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(product: product);
+                              },
+                            ),
+                          );
                         },
-                      ),
-                    );
-                  },
-                  child: ProductCard(
-                    title: product['title'] as String,
-                    price: (product['price'] as num).toDouble(),
-                    image: product['imageUrl'] as String,
-                    backgroundColor: index.isEven
-                        ? const Color(0xFFF4E9D6)
-                        : const Color(0xFFD69A7D),
-                  ),
-                );
-              },
-            )
-            : ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                final product = products[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ProductDetailsPage(product: product);
+                        child: ProductCard(
+                          title: product['title'] as String,
+                          price: (product['price'] as num).toDouble(),
+                          image: product['imageUrl'] as String,
+                          backgroundColor: index.isEven
+                              ? const Color(0xFFF4E9D6)
+                              : const Color(0xFFD69A7D),
+                        ),
+                      );
+                    },
+                  )
+                : ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(product: product);
+                              },
+                            ),
+                          );
                         },
-                      ),
-                    );
-                  },
-                  child: ProductCard(
-                    title: product['title'] as String,
-                    price: (product['price'] as num).toDouble(),
-                    image: product['imageUrl'] as String,
-                    backgroundColor: index.isEven
-                        ? const Color(0xFFF4E9D6)
-                        : const Color(0xFFD69A7D),
+                        child: ProductCard(
+                          title: product['title'] as String,
+                          price: (product['price'] as num).toDouble(),
+                          image: product['imageUrl'] as String,
+                          backgroundColor: index.isEven
+                              ? const Color(0xFFF4E9D6)
+                              : const Color(0xFFD69A7D),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
